@@ -1,5 +1,8 @@
 Under development
 -----------------
+
+1.1.0 (2019-05-02)
+-----------------
 - Default timeout is increased to 10 seconds (alexeevdv)
 - `isEmailValid` replaced with `validate` (alexeevdv)
 
