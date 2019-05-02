@@ -1,7 +1,7 @@
 # yii2-zerobounce-client
 
-[![Build Status](https://travis-ci.com/alexeevdv/yii2-zerbounce-client.svg?branch=master)](https://travis-ci.com/alexeevdv/yii2-zerbounce-client) 
-[![codecov](https://codecov.io/gh/alexeevdv/yii2-zerbounce-client/branch/master/graph/badge.svg)](https://codecov.io/gh/alexeevdv/yii2-zerbounce-client)
+[![Build Status](https://travis-ci.com/alexeevdv/yii2-zerobounce-client.svg?branch=master)](https://travis-ci.com/alexeevdv/yii2-zerobounce-client) 
+[![codecov](https://codecov.io/gh/alexeevdv/yii2-zerobounce-client/branch/master/graph/badge.svg)](https://codecov.io/gh/alexeevdv/yii2-zerobounce-client)
 ![PHP 7.1](https://img.shields.io/badge/PHP-7.1-green.svg) 
 ![PHP 7.2](https://img.shields.io/badge/PHP-7.2-green.svg)
 ![PHP 7.3](https://img.shields.io/badge/PHP-7.3-green.svg)
