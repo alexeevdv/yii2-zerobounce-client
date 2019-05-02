@@ -1,0 +1,33 @@
+{
+    "name": "alexeevdv/yii2-zerobounce-client",
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmitry V. Alekseev",
+            "email": "mail@alexeevdv.ru"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "alexeevdv\\yii\\zerobounce\\": "src"
+        }
+    },
+    "require": {
+        "php": ">=7.1",
+        "yiisoft/yii2-httpclient": "^2.0"
+    },
+    "require-dev": {
+        "codeception/codeception": "^3.0",
+        "yiisoft/yii2-coding-standards": "^2.0"
+    }
+}
