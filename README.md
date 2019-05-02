@@ -43,10 +43,18 @@ to the ```require``` section of your `composer.json` file.
 
 ## Usage
 
+
+### Validate email
 ```php
 $client = yii\di\Instance::ensure(alexeevdv\yii\zerobounce\ClientInterface::class);
 $result = $client->validate('valid@example.com');
 if ($result->isValid()) {
     // do your stuff
 }
+```
+
+### Get credits
+```php
+$client = yii\di\Instance::ensure(alexeevdv\yii\zerobounce\ClientInterface::class);
+$credits = $client->getCredits();
 ```
