@@ -45,5 +45,8 @@ to the ```require``` section of your `composer.json` file.
 
 ```php
 $client = yii\di\Instance::ensure(alexeevdv\yii\zerobounce\ClientInterface::class);
-$isValid = $client->isEmailValid('valid@example.com');
+$result = $client->validate('valid@example.com');
+if ($result->isValid()) {
+    // do your stuff
+}
 ```
