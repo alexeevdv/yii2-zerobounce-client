@@ -26,7 +26,7 @@ class ClientTest extends Unit
         ]);
     }
 
-    public function testIsEmailValidOnValidEmail()
+    public function testValidateOnValidEmail()
     {
         /** @var Client $client */
         $client = $this->make(Client::class, [
@@ -37,10 +37,10 @@ class ClientTest extends Unit
                 ],
             ])
         ]);
-        $this->assertTrue($client->isEmailValid('valid@example.com'));
+        $this->assertTrue($client->validate('valid@example.com')->isValid());
     }
 
-    public function testIsEmailValidOnInvalidEmail()
+    public function testValidateOnInvalidEmail()
     {
         /** @var Client $client */
         $client = $this->make(Client::class, [
@@ -53,10 +53,10 @@ class ClientTest extends Unit
                 ]),
             ])
         ]);
-        $this->assertFalse($client->isEmailValid('invalid@example.com'));
+        $this->assertFalse($client->validate('invalid@example.com')->isValid());
     }
 
-    public function testIsEmailValidWithTransportError()
+    public function testValidateWithTransportError()
     {
         /** @var Client $client */
         $client = $this->make(Client::class, [
@@ -67,10 +67,10 @@ class ClientTest extends Unit
             ])
         ]);
         $this->expectException(TransportException::class);
-        $client->isEmailValid('does-not-matter@example.com');
+        $client->validate('does-not-matter@example.com');
     }
 
-    public function testIsEmailValidWithBadResponse()
+    public function testValidateWithBadResponse()
     {
         /** @var Client $client */
         $client = $this->make(Client::class, [
@@ -81,6 +81,6 @@ class ClientTest extends Unit
             ])
         ]);
         $this->expectException(BadResponseException::class);
-        $client->isEmailValid('does-not-matter@example.com');
+        $client->validate('does-not-matter@example.com');
     }
 }

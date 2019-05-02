@@ -4,8 +4,5 @@ namespace alexeevdv\yii\zerobounce;
 
 interface ClientInterface
 {
-    /**
-     * Check if provided email is valid
-     */
-    public function isEmailValid(string $email): bool;
+    public function validate(string $email, string $ip = ''): ValidateResponseInterface;
 }

@@ -3,7 +3,6 @@
 namespace alexeevdv\yii\zerobounce;
 
 use yii\base\InvalidConfigException;
-use yii\helpers\ArrayHelper;
 use yii\httpclient\Client as HttpClient;
 use yii\httpclient\Exception as HttpClientException;
 use yii\httpclient\Request;
@@ -11,8 +10,6 @@ use yii\httpclient\Response;
 
 class Client extends HttpClient implements ClientInterface
 {
-    const VALIDATION_STATUS_VALID = 'valid';
-
     /**
      * @var string
      */
@@ -27,7 +24,7 @@ class Client extends HttpClient implements ClientInterface
      * API response timeout in seconds
      * @var int
      */
-    public $timeout = 5;
+    public $timeout = 10;
 
     /**
      * @throws InvalidConfigException
@@ -41,11 +38,10 @@ class Client extends HttpClient implements ClientInterface
     }
 
     /**
-     * @inheritDoc
      * @throws BadResponseException
      * @throws TransportException
      */
-    public function isEmailValid(string $email): bool
+    public function validate(string $email, string $ip = ''): ValidateResponseInterface
     {
         $request = $this
             ->createApiRequest()
@@ -54,7 +50,7 @@ class Client extends HttpClient implements ClientInterface
                 '/v2/validate',
                 'email' => $email,
                 'api_key' => $this->apiKey,
-                'ip_address' => '',
+                'ip_address' => $ip,
             ])
         ;
 
@@ -64,12 +60,9 @@ class Client extends HttpClient implements ClientInterface
             throw new BadResponseException($response, 'Failed to validate email.');
         }
 
-        return ArrayHelper::getValue($response->getData(), 'status') === self::VALIDATION_STATUS_VALID;
+        return new ValidateResponse($response->getData());
     }
 
-    /**
-     * @return Request
-     */
     protected function createApiRequest(): Request
     {
         return $this
