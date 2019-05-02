@@ -83,4 +83,30 @@ class ClientTest extends Unit
         $this->expectException(BadResponseException::class);
         $client->validate('does-not-matter@example.com');
     }
+
+    public function testGetCreditsSuccessful()
+    {
+        /** @var Client $client */
+        $client = $this->make(Client::class, [
+            'sendApiRequest' => $this->make(Response::class, [
+                'getStatusCode' => '200',
+                'getData' => [
+                    'Credits' => '1234'
+                ],
+            ]),
+        ]);
+        $this->assertEquals(1234, $client->getCredits());
+    }
+
+    public function testGetCreditsFailed()
+    {
+        /** @var Client $client */
+        $client = $this->make(Client::class, [
+            'sendApiRequest' => $this->make(Response::class, [
+                'getStatusCode' => '500',
+            ]),
+        ]);
+        $this->expectException(BadResponseException::class);
+        $client->getCredits();
+    }
 }

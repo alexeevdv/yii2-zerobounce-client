@@ -3,6 +3,7 @@
 namespace alexeevdv\yii\zerobounce;
 
 use yii\base\InvalidConfigException;
+use yii\helpers\ArrayHelper;
 use yii\httpclient\Client as HttpClient;
 use yii\httpclient\Exception as HttpClientException;
 use yii\httpclient\Request;
@@ -47,7 +48,7 @@ class Client extends HttpClient implements ClientInterface
             ->createApiRequest()
             ->setMethod('GET')
             ->setUrl([
-                '/v2/validate',
+                'v2/validate',
                 'email' => $email,
                 'api_key' => $this->apiKey,
                 'ip_address' => $ip,
@@ -61,6 +62,26 @@ class Client extends HttpClient implements ClientInterface
         }
 
         return new ValidateResponse($response->getData());
+    }
+
+    public function getCredits(): int
+    {
+        $request = $this
+            ->createApiRequest()
+            ->setMethod('GET')
+            ->setUrl([
+                'v2/getcredits',
+                'api_key' => $this->apiKey,
+            ])
+        ;
+
+        $response = $this->sendApiRequest($request);
+        $credits = ArrayHelper::getValue($response->getData(), 'Credits');
+        if ($response->getStatusCode() !== '200' || $credits === null) {
+            throw new BadResponseException($response, 'Failed to get credits.');
+        }
+
+        return (int) $credits;
     }
 
     protected function createApiRequest(): Request
