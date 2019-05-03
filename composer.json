@@ -1,5 +1,7 @@
 {
     "name": "alexeevdv/yii2-zerobounce-client",
+    "description": "Yii2 client for zerobounce.net API",
+    "keywords": ["yii2", "zerobounce"],
     "type": "yii2-extension",
     "license": "MIT",
     "authors": [
