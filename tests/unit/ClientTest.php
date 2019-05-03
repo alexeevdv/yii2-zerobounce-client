@@ -4,6 +4,7 @@ namespace tests\unit;
 
 use alexeevdv\yii\zerobounce\BadResponseException;
 use alexeevdv\yii\zerobounce\Client;
+use alexeevdv\yii\zerobounce\NotAuthorizedException;
 use alexeevdv\yii\zerobounce\TransportException;
 use Codeception\Test\Unit;
 use yii\base\InvalidConfigException;
@@ -84,6 +85,20 @@ class ClientTest extends Unit
         $client->validate('does-not-matter@example.com');
     }
 
+    public function testValidateWithWrongCredentials()
+    {
+        $client = $this->make(Client::class, [
+            'sendApiRequest' => $this->make(Response::class, [
+                'getStatusCode' => '200',
+                'getData' => [
+                    'error' => 'Invalid API Key or your account ran out of credits',
+                ],
+            ])
+        ]);
+        $this->expectException(NotAuthorizedException::class);
+        $client->validate('does-not-matter@example.com');
+    }
+
     public function testGetCreditsSuccessful()
     {
         /** @var Client $client */
@@ -107,6 +122,19 @@ class ClientTest extends Unit
             ]),
         ]);
         $this->expectException(BadResponseException::class);
+        $client->getCredits();
+    }
+
+    public function testGetCreditsWithWrongCredentials()
+    {
+        /** @var Client $client */
+        $client = $this->make(Client::class, [
+            'sendApiRequest' => $this->make(Response::class, [
+                'getStatusCode' => '400',
+                'getData' => 'Bad Request',
+            ]),
+        ]);
+        $this->expectException(NotAuthorizedException::class);
         $client->getCredits();
     }
 }

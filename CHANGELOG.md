@@ -1,6 +1,10 @@
 Under development
 -----------------
 
+1.3.1 (2019-05-03)
+------------------
+- Add NotAuthorizedException (alexeevdv)
+
 1.3.0 (2019-05-03)
 ------------------
 - Add `ValidateResponseInterface::isInvalid()` method (alexeevdv)

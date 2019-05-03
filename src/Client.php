@@ -40,6 +40,7 @@ class Client extends HttpClient implements ClientInterface
 
     /**
      * @throws BadResponseException
+     * @throws NotAuthorizedException
      * @throws TransportException
      */
     public function validate(string $email, string $ip = ''): ValidateResponseInterface
@@ -61,9 +62,19 @@ class Client extends HttpClient implements ClientInterface
             throw new BadResponseException($response, 'Failed to validate email.');
         }
 
+        $error = ArrayHelper::getValue($response->getData(), 'error');
+        if ($error) {
+            throw new NotAuthorizedException($error);
+        }
+
         return new ValidateResponse($response->getData());
     }
 
+    /**
+     * @throws BadResponseException
+     * @throws NotAuthorizedException
+     * @throws TransportException
+     */
     public function getCredits(): int
     {
         $request = $this
@@ -76,6 +87,11 @@ class Client extends HttpClient implements ClientInterface
         ;
 
         $response = $this->sendApiRequest($request);
+
+        if ($response->getStatusCode() === '400') {
+            throw new NotAuthorizedException($response->getContent());
+        }
+
         $credits = ArrayHelper::getValue($response->getData(), 'Credits');
         if ($response->getStatusCode() !== '200' || $credits === null) {
             throw new BadResponseException($response, 'Failed to get credits.');
