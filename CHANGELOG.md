@@ -1,6 +1,19 @@
 Under development
 -----------------
 
+1.3.0 (2019-05-03)
+------------------
+- Add `ValidateResponseInterface::isInvalid()` method (alexeevdv)
+- Add `ValidateResponseInterface::isCatchAll()` method (alexeevdv)
+- Add `ValidateResponseInterface::isSpamTrap()` method (alexeevdv)
+- Add `ValidateResponseInterface::isAbuse()` method (alexeevdv)
+- Add `ValidateResponseInterface::isDoNotMail()` method (alexeevdv)
+- Add `ValidateResponseInterface::isUnknown()` method (alexeevdv)
+- Add `ValidateResponseInterface::getMxRecord()` method (alexeevdv)
+- Add `ValidateResponseInterface::getFirstName()` method (alexeevdv)
+- Add `ValidateResponseInterface::getLastName()` method (alexeevdv)
+- Add `ValidateResponseInterface::getGender()` method (alexeevdv)
+
 1.2.0 (2019-05-02)
 ------------------
 - Add `getCredits` method (alexeevdv)

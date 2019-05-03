@@ -37,7 +37,71 @@ class ValidateResponseTest extends Unit
         $this->assertEquals('valid', $response->getStatus());
         $this->assertEquals('', $response->getSubStatus());
         $this->assertTrue($response->isValid());
+        $this->assertFalse($response->isInvalid());
+        $this->assertFalse($response->isCatchAll());
+        $this->assertFalse($response->isSpamTrap());
+        $this->assertFalse($response->isAbuse());
+        $this->assertFalse($response->isDoNotMail());
+        $this->assertFalse($response->isUnknown());
         $this->assertTrue($response->isMxFound());
         $this->assertTrue($response->isFreeEmail());
+        $this->assertEquals('mx-aol.mail.gm0.yahoodns.net', $response->getMxRecord());
+        $this->assertEquals('Jill', $response->getFirstName());
+        $this->assertEquals('Stein', $response->getLastName());
+        $this->assertEquals(ValidateResponse::GENDER_FEMALE, $response->getGender());
+    }
+
+    public function testIsInvalid()
+    {
+        $rawFields = [
+            'status' => 'invalid',
+        ];
+        $response = new ValidateResponse($rawFields);
+        $this->assertTrue($response->isInvalid());
+    }
+
+    public function testIsCatchAll()
+    {
+        $rawFields = [
+            'status' => 'catch-all',
+        ];
+        $response = new ValidateResponse($rawFields);
+        $this->assertTrue($response->isCatchAll());
+    }
+
+    public function testIsSpamTrap()
+    {
+        $rawFields = [
+            'status' => 'spamtrap',
+        ];
+        $response = new ValidateResponse($rawFields);
+        $this->assertTrue($response->isSpamTrap());
+    }
+
+    public function testIsAbuse()
+    {
+        $rawFields = [
+            'status' => 'abuse',
+        ];
+        $response = new ValidateResponse($rawFields);
+        $this->assertTrue($response->isAbuse());
+    }
+
+    public function isDoNotMail()
+    {
+        $rawFields = [
+            'status' => 'do_not_mail',
+        ];
+        $response = new ValidateResponse($rawFields);
+        $this->assertTrue($response->isDoNotMail());
+    }
+
+    public function isUnknown()
+    {
+        $rawFields = [
+            'status' => 'do_not_mail',
+        ];
+        $response = new ValidateResponse($rawFields);
+        $this->assertTrue($response->isUnknown());
     }
 }
