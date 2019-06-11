@@ -1,6 +1,10 @@
 Under development
 -----------------
 
+1.5.0 (2019-06-11)
+------------------
+- Introduce Exception interface instead of base Exception class (alexeevdv)
+
 1.4.0 (2019-05-03)
 ------------------
 - Add NotAuthorizedException (alexeevdv)
