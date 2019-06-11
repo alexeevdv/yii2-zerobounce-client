@@ -2,6 +2,6 @@
 
 namespace alexeevdv\yii\zerobounce;
 
-class NotAuthorizedException extends Exception
+class NotAuthorizedException extends \Exception implements Exception
 {
 }

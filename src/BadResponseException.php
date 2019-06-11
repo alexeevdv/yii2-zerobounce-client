@@ -5,7 +5,7 @@ namespace alexeevdv\yii\zerobounce;
 use Throwable;
 use yii\httpclient\Response;
 
-class BadResponseException extends Exception
+class BadResponseException extends \Exception implements Exception
 {
     /**
      * @var Response

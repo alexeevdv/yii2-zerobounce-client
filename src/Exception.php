@@ -2,6 +2,8 @@
 
 namespace alexeevdv\yii\zerobounce;
 
-class Exception extends \Exception
+use Throwable;
+
+interface Exception extends Throwable
 {
 }

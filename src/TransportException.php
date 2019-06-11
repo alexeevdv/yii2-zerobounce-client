@@ -2,6 +2,6 @@
 
 namespace alexeevdv\yii\zerobounce;
 
-class TransportException extends Exception
+class TransportException extends \Exception implements Exception
 {
 }
