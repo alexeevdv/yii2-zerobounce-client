@@ -6,7 +6,6 @@ use alexeevdv\yii\zerobounce\BadResponseException;
 use alexeevdv\yii\zerobounce\Client;
 use alexeevdv\yii\zerobounce\NotAuthorizedException;
 use alexeevdv\yii\zerobounce\TransportException;
-use Codeception\Stub\Expected;
 use Codeception\Test\Unit;
 use yii\base\InvalidConfigException;
 use yii\httpclient\Exception as HttpClientException;
