@@ -207,7 +207,7 @@ class Client extends HttpClient implements ClientInterface
             ->setOptions([
                 'timeout' => $this->timeout,
             ])
-            ;
+        ;
     }
 
     /**
