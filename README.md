@@ -62,7 +62,7 @@ $credits = $client->getCredits();
 ### Send file
 ```php
 $client = yii\di\Instance::ensure(alexeevdv\yii\zerobounce\BulkClientInterface::class);
-$result = $client->sendFile('file.csv', 'http://site.com/your-redirect-link/');
+$result = $client->sendFile('file.csv', 'http://site.com/your-postback-link/');
 ```
 
 ### Read file
