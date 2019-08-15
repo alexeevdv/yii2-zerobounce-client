@@ -1,6 +1,5 @@
 <?php
 
-
 namespace alexeevdv\yii\zerobounce;
 
 /**

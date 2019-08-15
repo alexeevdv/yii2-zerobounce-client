@@ -58,3 +58,23 @@ if ($result->isValid()) {
 $client = yii\di\Instance::ensure(alexeevdv\yii\zerobounce\ClientInterface::class);
 $credits = $client->getCredits();
 ```
+
+### Send file
+```php
+$client = yii\di\Instance::ensure(alexeevdv\yii\zerobounce\BulkClientInterface::class);
+$result = $client->sendFile('file.csv', 'http://site.com/your-redirect-link/');
+```
+
+### Read file
+```php
+$client = yii\di\Instance::ensure(alexeevdv\yii\zerobounce\BulkClientInterface::class);
+//File uuid received from sendFile response
+$result = $client->readFile($uuid);
+```
+
+### Delete file
+```php
+$client = yii\di\Instance::ensure(alexeevdv\yii\zerobounce\BulkClientInterface::class);
+//File uuid received from sendFile response
+$result = $client->deleteFile($uuid);
+```

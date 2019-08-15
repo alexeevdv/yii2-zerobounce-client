@@ -60,6 +60,6 @@ abstract class BaseClient extends HttpClient
             ->setOptions([
                 'timeout' => $this->timeout,
             ])
-            ;
+        ;
     }
 }
