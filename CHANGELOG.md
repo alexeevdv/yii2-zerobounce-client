@@ -1,5 +1,6 @@
 Under development
 -----------------
+- Added methods to send/read and delete .csv files for bulk validation (baskof147)
 
 1.5.0 (2019-06-11)
 ------------------
