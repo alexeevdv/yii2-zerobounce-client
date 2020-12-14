@@ -4,3 +4,4 @@ bootstrap: false
 modules:
   enabled:
     - Asserts
+    - Yii2
