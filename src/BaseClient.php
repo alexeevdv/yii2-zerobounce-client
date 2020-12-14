@@ -10,6 +10,7 @@ use yii\httpclient\Response;
 
 /**
  * Class BaseClient
+ *
  * @package alexeevdv\yii\zerobounce
  */
 abstract class BaseClient extends HttpClient
@@ -21,6 +22,7 @@ abstract class BaseClient extends HttpClient
 
     /**
      * API response timeout in seconds
+     *
      * @var int
      */
     public $timeout = 10;

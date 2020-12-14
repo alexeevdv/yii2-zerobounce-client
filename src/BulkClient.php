@@ -7,6 +7,7 @@ use yii\httpclient\Request;
 
 /**
  * Class BulkClient
+ *
  * @package alexeevdv\yii\zerobounce
  */
 class BulkClient extends BaseClient implements BulkClientInterface
@@ -19,7 +20,9 @@ class BulkClient extends BaseClient implements BulkClientInterface
     /**
      * @param string $fileName
      * @param string $redirectUrl
+     *
      * @return array
+     *
      * @throws BadResponseException
      * @throws NotAuthorizedException
      * @throws TransportException
@@ -52,7 +55,9 @@ class BulkClient extends BaseClient implements BulkClientInterface
 
     /**
      * @param string $fileId
+     *
      * @return string
+     *
      * @throws BadResponseException
      * @throws NotAuthorizedException
      * @throws TransportException
@@ -83,7 +88,9 @@ class BulkClient extends BaseClient implements BulkClientInterface
 
     /**
      * @param string $fileId
+     *
      * @return bool
+     *
      * @throws NotAuthorizedException
      * @throws TransportException
      */

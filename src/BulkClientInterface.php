@@ -4,6 +4,7 @@ namespace alexeevdv\yii\zerobounce;
 
 /**
  * Interface BulkClientInterface
+ *
  * @package alexeevdv\yii\zerobounce
  */
 interface BulkClientInterface
