@@ -17,8 +17,8 @@ class ZeroBounceValidator extends Validator
     /**
      * Callable that returns client IP address
      *
-     * @var    callable
-     * @return void
+     * @var    callable|null
+     * @return string|null Clients IP address
      */
     public $ipGetter;
 
