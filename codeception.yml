@@ -15,7 +15,3 @@ coverage:
   enabled: true
   include:
     - src/*
-modules:
-    config:
-        Yii2:
-            configFile: 'tests/config/test.php'

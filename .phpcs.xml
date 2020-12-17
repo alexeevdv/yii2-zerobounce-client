@@ -6,8 +6,4 @@
     <exclude-pattern>tests/*</exclude-pattern>
 
     <rule ref="Yii2"/>
-    <rule ref="Generic.Commenting.DocComment">
-        <exclude name="Generic.Commenting.DocComment.MissingShort"/>
-    </rule>
-
 </ruleset>

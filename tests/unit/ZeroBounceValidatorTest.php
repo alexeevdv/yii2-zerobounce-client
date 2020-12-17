@@ -16,13 +16,13 @@ use yii\web\Request;
 
 class ZeroBounceValidatorTest extends Unit
 {
-
     /**
      * @dataProvider validResponses
      */
     public function testValidEmail($response)
     {
         $validator = new ZeroBounceValidator([
+            'request' => $this->make(ConsoleRequest::class),
             'client' => $this->make(Client::class, [
                 'validate' => Expected::once(function ($value, $ip) use ($response) {
                     $this->assertEquals('test@test.com', $value);
@@ -51,6 +51,7 @@ class ZeroBounceValidatorTest extends Unit
     public function testInalidEmail($response)
     {
         $validator = new ZeroBounceValidator([
+            'request' => $this->make(ConsoleRequest::class),
             'client' => $this->make(Client::class, [
                 'validate' => Expected::once(function ($value, $ip) use ($response) {
                     $this->assertEquals('test@test.com', $value);
@@ -79,13 +80,10 @@ class ZeroBounceValidatorTest extends Unit
 
     public function testExtractedIpAddress()
     {
-        Yii::$app->setComponents([
+        $validator = new ZeroBounceValidator([
             'request' => $this->make(Request::class, [
                 'getUserIP' => Expected::once('127.0.0.1')
-            ])
-        ]);
-
-        $validator = new ZeroBounceValidator([
+            ]),
             'client' => $this->make(Client::class, [
                 'validate' => Expected::once(function ($value, $ip) {
                     $this->assertEquals('test@test.com', $value);
@@ -103,11 +101,8 @@ class ZeroBounceValidatorTest extends Unit
 
     public function testNotWebRequest()
     {
-        Yii::$app->setComponents([
-            'request' => $this->make(ConsoleRequest::class)
-        ]);
-
         $validator = new ZeroBounceValidator([
+            'request' => $this->make(ConsoleRequest::class),
             'client' => $this->make(Client::class, [
                 'validate' => Expected::once(function ($value, $ip) {
                     $this->assertEquals('test@test.com', $value);
@@ -129,6 +124,7 @@ class ZeroBounceValidatorTest extends Unit
             'ipGetter' => function () {
                 return '127.0.0.1';
             },
+            'request' => $this->make(ConsoleRequest::class),
             'client' => $this->make(Client::class, [
                 'validate' => Expected::once(function ($value, $ip) {
                     $this->assertEquals('test@test.com', $value);
@@ -147,6 +143,7 @@ class ZeroBounceValidatorTest extends Unit
     public function testValidateThrowsTransportException()
     {
         $validator = new ZeroBounceValidator([
+            'request' => $this->make(ConsoleRequest::class),
             'client' => $this->make(Client::class, [
                 'validate' => Expected::once(function () {
                     throw new TransportException();
@@ -160,6 +157,7 @@ class ZeroBounceValidatorTest extends Unit
     public function testValidateThrowsBadResponseException()
     {
         $validator = new ZeroBounceValidator([
+            'request' => $this->make(ConsoleRequest::class),
             'client' => $this->make(Client::class, [
                 'validate' => Expected::once(function () {
                     throw new BadResponseException(new Response());
